@@ -1,41 +1,17 @@
-const featuredBlogs = [
-  {
-    id: 1,
-    title: "สำรวจแนวคิด Minimalist ในการจัดบ้านให้โล่งสบาย",
-    category: "LIFESTYLE",
-    excerpt:
-      "รู้จักหลักคิดและเทคนิคในการจัดบ้านสไตล์มินิมอล ที่ช่วยให้ทุกพื้นที่โล่ง โปร่ง และใช้งานได้จริง พร้อมไอเดียเริ่มต้นสำหรับมือใหม่.",
-    image:
-      "https://images.unsplash.com/photo-1529429617124-aee711a65a36?auto=format&fit=crop&w=1200&q=80",
-    author: "ภัทรสุดา ใจดี",
-    published: "12 ตุลาคม 2024",
-    readTime: 8,
-  },
-  {
-    id: 2,
-    title: "เคล็ดลับถ่ายภาพท่องเที่ยวให้มีสตอรี่ในทุกช็อต",
-    category: "CREATIVE",
-    excerpt:
-      "จับประเด็นสำคัญของการเล่าเรื่องผ่านภาพท่องเที่ยว ตั้งแต่การเตรียมตัว คุมโทนสี ไปจนถึงวิธีการจัดองค์ประกอบให้คนดูรู้สึกเหมือนได้ไปด้วยกัน.",
-    image:
-      "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80",
-    author: "กิตติพล แสงงาม",
-    published: "4 ตุลาคม 2024",
-    readTime: 6,
-  },
-  {
-    id: 3,
-    title: "เริ่มต้นสร้างแบรนด์ส่วนตัวบนโลกออนไลน์แบบไม่ต้องฝืนตัวเอง",
-    category: "CAREER",
-    excerpt:
-      "สรุปขั้นตอนสร้าง Personal Brand ที่จริงใจและยั่งยืน ตั้งแต่การค้นหาแก่นแท้ของตัวเอง ไปจนถึงการทำคอนเทนต์ที่คนดูรู้สึกเชื่อมโยงได้.",
-    image:
-      "https://images.unsplash.com/photo-1483478550801-ceba5fe50e8e?auto=format&fit=crop&w=1200&q=80",
-    author: "รุจิรา รุ่งโรจน์",
-    published: "28 กันยายน 2024",
-    readTime: 9,
-  },
-];
+import { Link } from "react-router-dom";
+import { blogPosts } from "../data";
+
+const featuredBlogs = blogPosts
+  .filter((post) => post.isFeatured)
+  .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+  .slice(0, 3);
+
+const formatThaiDate = (dateString) =>
+  new Date(dateString).toLocaleDateString("th-TH", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
 const getInitials = (name) =>
   name
@@ -128,10 +104,13 @@ export default function Home() {
                   เราออกแบบให้คุณมองเห็นภาพรวมของเนื้อหาตั้งแต่แรกเห็น
                 </p>
               </div>
-              <button className="group inline-flex items-center gap-2 self-start rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition hover:scale-105">
+              <Link
+                to="/blog"
+                className="group inline-flex items-center gap-2 self-start rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition hover:scale-105"
+              >
                 สำรวจบทความทั้งหมด
                 <span className="transition-transform group-hover:translate-x-1">→</span>
-              </button>
+              </Link>
             </div>
 
             <div className="mt-10 grid gap-10 md:grid-cols-2 xl:grid-cols-3">
@@ -142,14 +121,14 @@ export default function Home() {
                 >
                   <div className="relative h-56 overflow-hidden">
                     <img
-                      src={blog.image}
+                      src={blog.coverImage}
                       alt={blog.title}
                       className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-br from-slate-900/60 via-slate-900/10 to-slate-900/80" />
                     <span className="absolute left-5 top-5 inline-flex items-center rounded-full bg-white/10 px-4 py-1 text-xs font-semibold tracking-[0.4em] text-white/90">
-                      {blog.category}
+                      {blog.category.toUpperCase()}
                     </span>
                     <div className="absolute -bottom-6 right-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-slate-900 shadow-lg">
                       <div className="text-center text-xs font-semibold">
@@ -172,16 +151,16 @@ export default function Home() {
                         </div>
                         <div className="flex flex-col">
                           <span className="font-semibold text-white/90">{blog.author}</span>
-                          <span>{blog.published}</span>
+                          <span>{formatThaiDate(blog.publishedAt)}</span>
                         </div>
                       </div>
-                      <a
-                        href="#"
+                      <Link
+                        to={`/blog/${blog.slug}`}
                         className="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-xs font-semibold text-white/80 transition hover:border-blue-200 hover:text-blue-100"
                       >
                         อ่านต่อ
                         <span className="transition-transform group-hover:translate-x-1">↗</span>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
