@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { blogPosts } from "../data";
 
 const dateFilters = [
@@ -328,13 +329,13 @@ export default function Blog() {
                         ))}
                       </div>
                       <div className="flex items-center gap-3 pt-2 text-sm font-semibold text-blue-600">
-                        <a
-                          href="#"
+                        <Link
+                          to={`/blog/${post.slug}`}
                           className="inline-flex items-center gap-2 transition hover:text-blue-800"
                         >
                           อ่านบทความ
                           <span aria-hidden>↗</span>
-                        </a>
+                        </Link>
                         <button
                           type="button"
                           className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400 transition hover:text-slate-600"

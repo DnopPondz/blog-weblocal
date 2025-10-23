@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { blogPosts } from "../data";
 
 const featuredBlogs = blogPosts
@@ -103,10 +104,13 @@ export default function Home() {
                   เราออกแบบให้คุณมองเห็นภาพรวมของเนื้อหาตั้งแต่แรกเห็น
                 </p>
               </div>
-              <button className="group inline-flex items-center gap-2 self-start rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition hover:scale-105">
+              <Link
+                to="/blog"
+                className="group inline-flex items-center gap-2 self-start rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition hover:scale-105"
+              >
                 สำรวจบทความทั้งหมด
                 <span className="transition-transform group-hover:translate-x-1">→</span>
-              </button>
+              </Link>
             </div>
 
             <div className="mt-10 grid gap-10 md:grid-cols-2 xl:grid-cols-3">
@@ -150,13 +154,13 @@ export default function Home() {
                           <span>{formatThaiDate(blog.publishedAt)}</span>
                         </div>
                       </div>
-                      <a
-                        href="#"
+                      <Link
+                        to={`/blog/${blog.slug}`}
                         className="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-xs font-semibold text-white/80 transition hover:border-blue-200 hover:text-blue-100"
                       >
                         อ่านต่อ
                         <span className="transition-transform group-hover:translate-x-1">↗</span>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
