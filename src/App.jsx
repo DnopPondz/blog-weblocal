@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact"
-import Blog from "./pages/blog";
+import Blog from "./pages/Blog";
 
 
 function App() {
