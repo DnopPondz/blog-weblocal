@@ -1,34 +1,8 @@
-const contactMethods = [
-  {
-    label: "อีเมลทีมบรรณาธิการ",
-    value: "hello@bloglocal.co",
-    description:
-      "ส่งเรื่องเล่าประสบการณ์หรือแนะนำหัวข้อที่อยากให้นำเสนอ เราตอบกลับภายใน 2 วันทำการ.",
-    icon: "✉️",
-  },
-  {
-    label: "ร่วมงานหรือสปอนเซอร์",
-    value: "partner@bloglocal.co",
-    description:
-      "พูดคุยเรื่องการทำแคมเปญร่วมกันหรือสนับสนุนเวิร์กช็อปสำหรับชุมชนคนสร้างสรรค์.",
-    icon: "🤝",
-  },
-  {
-    label: "กองบรรณาธิการสายด่วน",
-    value: "02-123-4567",
-    description:
-      "ติดต่องานด่วนวันจันทร์-ศุกร์ เวลา 10.00-17.00 น. เรายินดีช่วยเหลือ.",
-    icon: "📞",
-  },
-];
-
-const officeHours = [
-  { day: "วันจันทร์-ศุกร์", time: "10.00 - 17.00 น." },
-  { day: "วันเสาร์", time: "11.00 - 15.00 น." },
-  { day: "วันอาทิตย์", time: "ปิดทำการ (ตอบอีเมลเท่านั้น)" },
-];
+import { contactContent } from "../data";
 
 export default function Contact() {
+  const { hero, form, contactMethods, officeHours, studioNote } = contactContent;
+
   return (
     <div className="min-h-screen bg-slate-50">
       <section className="relative overflow-hidden bg-gradient-to-br from-blue-500 via-sky-500 to-cyan-500 text-white">
@@ -47,13 +21,11 @@ export default function Contact() {
         </div>
         <div className="relative mx-auto flex max-w-4xl flex-col gap-6 px-6 py-24 text-center md:py-28">
           <span className="mx-auto inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1 text-xs font-semibold tracking-[0.3em] uppercase">
-            Contact Us
+            {hero.eyebrow}
           </span>
-          <h1 className="text-4xl font-bold leading-tight md:text-5xl">
-            ติดต่อทีม Blog Local
-          </h1>
+          <h1 className="text-4xl font-bold leading-tight md:text-5xl">{hero.title}</h1>
           <p className="mx-auto max-w-2xl text-sm leading-relaxed text-white/80 md:text-lg">
-            หากคุณมีเรื่องราวน่าสนใจ คำถามเกี่ยวกับบทความ หรืออยากร่วมงานกับเรา ยินดีมากที่ได้พูดคุย เพียงเลือกช่องทางที่สะดวกที่สุดได้เลย.
+            {hero.description}
           </p>
         </div>
       </section>
@@ -62,10 +34,8 @@ export default function Contact() {
         <div className="grid gap-8 md:grid-cols-5">
           <div className="md:col-span-3">
             <div className="rounded-3xl bg-white p-8 shadow-xl shadow-sky-500/10 ring-1 ring-slate-100 md:p-10">
-              <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">ส่งข้อความถึงเรา</h2>
-              <p className="mt-3 text-sm text-slate-600 md:text-base">
-                กรอกข้อมูลด้านล่างแล้วทีมงานจะติดต่อกลับโดยเร็วที่สุด ข้อความทั้งหมดจะถูกเก็บเป็นความลับและใช้เพื่อการตอบกลับเท่านั้น.
-              </p>
+              <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">{form.title}</h2>
+              <p className="mt-3 text-sm text-slate-600 md:text-base">{form.description}</p>
               <form className="mt-8 grid gap-6">
                 <div className="grid gap-4 md:grid-cols-2">
                   <label className="flex flex-col gap-2 text-left text-sm font-medium text-slate-700">
@@ -105,8 +75,8 @@ export default function Contact() {
                   type="submit"
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-sky-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-sky-500/30 transition hover:scale-105"
                 >
-                  ส่งข้อความ
-                  <span>→</span>
+                  {form.submitLabel}
+                  <span>{form.submitIcon}</span>
                 </button>
               </form>
             </div>
@@ -151,9 +121,7 @@ export default function Contact() {
                 ))}
               </ul>
               <div className="mt-6 rounded-2xl bg-white/10 p-4 text-sm text-white/80">
-                <p>
-                  📍 สตูดิโอของเราอยู่ที่โครงการสร้างสรรค์ย่านเจริญนคร หากต้องการนัดพบ กรุณาอีเมลล่วงหน้าเพื่อจองเวลา.
-                </p>
+                <p>{studioNote}</p>
               </div>
             </div>
           </div>

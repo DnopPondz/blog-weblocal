@@ -1,64 +1,8 @@
-const values = [
-  {
-    title: "แบ่งปันประสบการณ์จริง",
-    description:
-      "เรื่องราวทุกชิ้นมาจากการลงมือทำของคนในแวดวงครีเอทีฟ เราตั้งใจคัดเลือกข้อมูลที่มีประโยชน์และเล่าให้เข้าใจง่าย เพื่อให้ผู้อ่านนำไปใช้ได้จริงในชีวิตประจำวัน.",
-    icon: "💡",
-  },
-  {
-    title: "สนับสนุนชุมชนคนสร้างสรรค์",
-    description:
-      "เราสร้างพื้นที่ให้คนที่ทำงานในสายอาชีพคล้ายกันได้พบปะ แลกเปลี่ยน และส่งต่อแรงบันดาลใจ ไม่ว่าคุณจะเป็นฟรีแลนซ์ นักออกแบบ หรือผู้ประกอบการ.",
-    icon: "🤝",
-  },
-  {
-    title: "ขับเคลื่อนด้วยความใส่ใจ",
-    description:
-      "ทีมบรรณาธิการให้ความสำคัญกับความถูกต้องของข้อมูล รวมถึงการเล่าเรื่องที่สะท้อนมุมมองที่หลากหลาย เราเชื่อว่าความละเอียดอ่อนคือพลังในการขับเคลื่อนงานสร้างสรรค์.",
-    icon: "🧭",
-  },
-];
-
-const teamMembers = [
-  {
-    name: "ภัทรสุดา ใจดี",
-    role: "บรรณาธิการบริหาร",
-    bio: "คอยดูแลภาพรวมของคอนเทนต์ทั้งหมด และชอบตั้งคำถามว่าเรื่องเล่าชิ้นนี้จะช่วยผู้อ่านได้จริงหรือไม่.",
-  },
-  {
-    name: "กิตติพล แสงงาม",
-    role: "หัวหน้าทีมครีเอทีฟ",
-    bio: "เล่าเรื่องด้วยภาพเก่งเป็นพิเศษ ชอบทดลองรูปแบบการเล่าเรื่องใหม่ๆ ที่ทำให้คนอ่านรู้สึกใกล้ชิดขึ้น.",
-  },
-  {
-    name: "รุจิรา รุ่งโรจน์",
-    role: "นักเขียนประจำ",
-    bio: "เชี่ยวชาญการเล่าเรื่องสาย Creative และถนัดการนำประสบการณ์จริงมาถ่ายทอดให้เห็นภาพ.",
-  },
-];
-
-const milestones = [
-  {
-    year: "2022",
-    title: "เริ่มต้นจากบทสนทนาเล็กๆ",
-    description:
-      "เราเริ่มรวบรวมบทความจากเพื่อนร่วมวงการเพื่อช่วยกันหาวิธีทำงานให้มีความหมายมากขึ้น.",
-  },
-  {
-    year: "2023",
-    title: "เปิดเว็บ Blog Local เวอร์ชันแรก",
-    description:
-      "หลังจากได้รับเสียงตอบรับดีจากจดหมายข่าว จึงต่อยอดสู่เว็บไซต์ที่คัดสรรบทความเจาะลึกมากขึ้น.",
-  },
-  {
-    year: "2024",
-    title: "ขยายหัวข้อและคอมมูนิตี้",
-    description:
-      "เราเพิ่มหมวดหมู่ใหม่ๆ ทั้งเรื่องอาชีพ การจัดการชีวิต และกิจกรรมเวิร์กช็อปเพื่อเชื่อมโยงผู้คนให้กว้างขึ้น.",
-  },
-];
+import { aboutContent } from "../data";
 
 export default function About() {
+  const { hero, values, milestones, team } = aboutContent;
+
   return (
     <div className="min-h-screen bg-slate-50">
       <section className="relative overflow-hidden bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white">
@@ -77,13 +21,11 @@ export default function About() {
         </div>
         <div className="relative mx-auto flex max-w-5xl flex-col gap-8 px-6 py-24 text-center md:py-32">
           <span className="mx-auto inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1 text-xs font-semibold tracking-[0.3em] uppercase">
-            About Blog Local
+            {hero.eyebrow}
           </span>
-          <h1 className="text-4xl font-bold leading-tight md:text-5xl">
-            พื้นที่เล่าเรื่องจริงจากคนทำงานสร้างสรรค์ ที่อยากให้ทุกวันเต็มไปด้วยแรงบันดาลใจ
-          </h1>
+          <h1 className="text-4xl font-bold leading-tight md:text-5xl">{hero.title}</h1>
           <p className="mx-auto max-w-3xl text-sm leading-relaxed text-white/80 md:text-lg">
-            เราเชื่อว่าประสบการณ์เล็กๆ ในชีวิตประจำวันสามารถเปลี่ยนมุมมองของใครบางคนได้เสมอ เว็บนี้จึงรวบรวมไอเดีย เทคนิค และบทเรียนจากคนธรรมดาที่หลงใหลการสร้างสรรค์เหมือนกัน.
+            {hero.description}
           </p>
         </div>
       </section>
@@ -106,7 +48,7 @@ export default function About() {
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">เส้นทางการเติบโตของเรา</h2>
           <p className="mt-3 max-w-3xl text-sm text-slate-600 md:text-base">
-            Blog Local เริ่มจากทีมเล็กๆ ที่อยากแบ่งปันบทเรียนจากงานและชีวิต ด้วยแรงสนับสนุนจากผู้อ่าน เราจึงพัฒนาเนื้อหาให้ครอบคลุมทั้งการทำงาน การใช้ชีวิต และการดูแลใจ.
+            Blog Local เริ่มจากทีมเล็กๆ ที่อยากแบ่งปันบทเรียนจากงานและชีวิต ด้วยแรงสนับสนุนจากผู้อ่าน เราจึงพัฒนาเนื้อหาให้ครอบคลุมทั้งการทำงาน การใช้ชีวิตและการดูแลใจ.
           </p>
           <div className="mt-10 space-y-8 border-l border-slate-200 pl-6">
             {milestones.map((milestone) => (
@@ -126,19 +68,19 @@ export default function About() {
         <div className="rounded-3xl bg-slate-900 p-10 text-white shadow-2xl shadow-slate-900/30">
           <div className="md:flex md:items-start md:justify-between">
             <div className="md:max-w-xl">
-              <h2 className="text-2xl font-bold md:text-3xl">ทีมงานเบื้องหลัง Blog Local</h2>
+              <h2 className="text-2xl font-bold md:text-3xl">{team.title}</h2>
               <p className="mt-3 text-sm leading-relaxed text-white/80 md:text-base">
-                เราเป็นกลุ่มคนที่หลงรักการเล่าเรื่องและอยากให้เนื้อหาที่ดีเข้าถึงผู้คนมากขึ้น ทุกบทความผ่านการรีวิวจากหลายมุมมองเพื่อให้มั่นใจว่าน่าติดตามและมีประโยชน์.
+                {team.description}
               </p>
             </div>
             <div className="mt-6 md:mt-0">
               <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
-                Editorial Team
+                {team.label}
               </span>
             </div>
           </div>
           <div className="mt-10 grid gap-8 md:grid-cols-3">
-            {teamMembers.map((member) => (
+            {team.members.map((member) => (
               <div key={member.name} className="rounded-2xl bg-white/10 p-6 backdrop-blur">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/20 text-lg font-semibold">
                   {member.name
